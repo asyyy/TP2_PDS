@@ -6,18 +6,18 @@ import TP2.TypeException;
 import TP2.Utils;
 
 // Concrete class for Expression: add case
-  public class AddExpression extends Expression {
+  public class MulExpression extends Expression {
     Expression left;
     Expression right;
 
-    public AddExpression(Expression left, Expression right) {
+    public MulExpression(Expression left, Expression right) {
       this.left = left;
       this.right = right;
     }
 
     // Pretty-printer
     public String pp() {
-      return "(" + left.pp() + " + " + right.pp() + ")";
+      return "(" + left.pp() + " * " + right.pp() + ")";
     }
 
     // IR generation
@@ -38,10 +38,10 @@ import TP2.Utils;
       String result = Utils.newtmp();
 
       // new add instruction result = left + right
-      Llvm.Instruction add = new Llvm.Add(leftRet.type.toLlvmType(), leftRet.result, rightRet.result, result);
+      Llvm.Instruction mul = new Llvm.Mul(leftRet.type.toLlvmType(), leftRet.result, rightRet.result, result);
 
       // append this instruction
-      leftRet.ir.appendCode(add);
+      leftRet.ir.appendCode(mul);
 
       // return the generated IR, plus the type of this expression
       // and where to find its result

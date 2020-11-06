@@ -23,7 +23,7 @@ public class SymbolTable {
   public static class VariableSymbol extends Symbol {
     Type type;
 
-    VariableSymbol(Type type, String ident) {
+    public VariableSymbol(Type type, String ident) {
       this.type = type;
       this.ident = ident;
     }
@@ -36,7 +36,12 @@ public class SymbolTable {
       return o.type.equals(this.type) &&
         o.ident.equals(this.ident);
     }
+
+    public Type getType() {
+    	return type;
+    }
   }
+ 
 
   public static class FunctionSymbol extends Symbol {
     Type returnType;
@@ -60,6 +65,16 @@ public class SymbolTable {
         o.arguments.equals(this.arguments) &&
         o.defined == this.defined;
     }
+    
+    public VariableSymbol findArg(String s) {
+    	for(VariableSymbol v : arguments) {
+    		if(v.ident.equals(s)) {
+    			return v;
+    		}
+    	}
+    	return null;
+    }
+    
   }
 
   // Store the table as a map
@@ -96,7 +111,7 @@ public class SymbolTable {
   public boolean remove(String ident) {
     return this.table.remove(ident) != null;
   }
-
+  
   public Symbol lookup(String ident) {
     Symbol res = this.table.get(ident);
 
