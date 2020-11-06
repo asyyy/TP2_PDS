@@ -11,9 +11,6 @@ public class Program {
     //List<Proto> lProto; Pour plus tard
     private List<Fonction> lFonc;
     
-    //A supprimer
-    Expression e;
-    
     public Program(List<Fonction> lFonc) {
       this.lFonc = lFonc;
     }
@@ -34,11 +31,12 @@ public class Program {
     	
     	SymbolTable ts = new SymbolTable();
         // computes the IR of the expression
+    	/*
         Expression.RetExpression retExpr = e.toIR(ts);
         // add a return instruction
         Llvm.Instruction ret = new Llvm.Return(retExpr.type.toLlvmType(), retExpr.result);
-        retExpr.ir.appendCode(ret);
+        retExpr.ir.appendCode(ret);*/
 
-        return retExpr.ir;
+        return null;
       }
   }

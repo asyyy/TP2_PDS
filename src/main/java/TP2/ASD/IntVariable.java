@@ -9,11 +9,11 @@ import TP2.SymbolTable.Symbol;
 import TP2.SymbolTable.VariableSymbol;
 
 // Concrete class for Expression: constant (integer) case
-  public class Declaration extends Variable {
+  public class IntVariable extends Variable {
     String name;
     Type type;
     
-    public Declaration(String name,Type type) {
+    public IntVariable(String name) {
       this.name = name;
     }
 
@@ -27,8 +27,7 @@ import TP2.SymbolTable.VariableSymbol;
 		if(var != null || var instanceof FunctionSymbol) {
 			System.err.println("Declaration -> Variable déjà déclaré");
 		}
-		VariableSymbol toAdd = new VariableSymbol(this.type,this.name);
-		ts.add(toAdd);
+	
 		RetVariable ret = new RetVariable(new Llvm.IR(Llvm.empty(),Llvm.empty()),type,name);
 		Llvm.Instruction alloca = new Llvm.alloca(this.name, this.type.toLlvmType());		
 		ret.ir.appendCode(alloca);		

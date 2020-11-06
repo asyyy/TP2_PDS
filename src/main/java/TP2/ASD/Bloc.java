@@ -9,7 +9,7 @@ public class Bloc {
 	//(dans PDF VSL, 2 listes)
 	
 	//Liste des déclarations dans un bloc
-	private List<Declaration> lVar;
+	private List<Variable> lVar;
 	
 	//Liste des instructions dans un bloc
 	private List<Instruction> lInstru;
@@ -20,7 +20,7 @@ public class Bloc {
 	 * @param lVar liste des déclarations dans un bloc
 	 * @param lInst non-null, liste des instruction contenue dans l
 	 */
-	public Bloc(List<Declaration> lVar, List<Instruction> lInst) {
+	public Bloc(List<Variable> lVar, List<Instruction> lInst) {
 		Objects.requireNonNull(lInst);
 		this.lVar = lVar;
 		this.lInstru = lInst;

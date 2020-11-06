@@ -11,31 +11,10 @@ import TP2.TypeException;
  *
  */
 public abstract class Fonction {
-	//Nom de la fonction
-	private String name;
 	
-	//Liste des paramètres de la fonction
-	private List<String> lParam;
-	
-	//Bloc d'instructions de la fonction
-	private Bloc b;
-	
-	/**
-	 * Constructeur de Fonction
-	 * @param n	Nom de la fonction
-	 * @param l Liste des parametres
-	 * @param b Bloc des instructions
-	 */
-	public Fonction(String n, List<String> l, Bloc b) {
-		this.name = n;
-		this.lParam = l;
-		this.b = b;
-	}
-	
-	//Pretty-Printer
 	public abstract String pp();
 	
-	public abstract RetFonction toIR(SymbolTable ts);
+	public abstract RetFonction toIR(SymbolTable ts) throws TypeException;
 	
 	// Object returned by toIR on expressions, with IR + synthesized attributes
     static public class RetFonction{

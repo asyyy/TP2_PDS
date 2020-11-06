@@ -4,9 +4,9 @@ import TP2.Llvm;
 import TP2.SymbolTable;
 
 // Concrete class for Expression: constant (integer) case
-  public class IntegerExpression extends Expression {
+  public class IntExpression extends Expression {
     int value;
-    public IntegerExpression(int value) {
+    public IntExpression(int value) {
       this.value = value;
     }
 
