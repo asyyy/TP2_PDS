@@ -1,0 +1,14 @@
+
+k
+java:S1206"PThis class overrides "equals()" and should therefore also override "hashCode()".(É­·ûþÿÿÿÿ
+k
+java:S1206o"PThis class overrides "equals()" and should therefore also override "hashCode()".(É­·ûþÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ú­âùùÿÿÿÿ
+k
+java:S12065"PThis class overrides "equals()" and should therefore also override "hashCode()".(É­·ûþÿÿÿÿ
+n
+java:S2293N"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ò“·U
+n
+java:S2293H"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ò“·U
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¯–¡úüÿÿÿÿ

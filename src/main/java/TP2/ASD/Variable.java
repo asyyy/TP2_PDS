@@ -2,10 +2,11 @@ package TP2.ASD;
 
 import TP2.Llvm;
 import TP2.SymbolTable;
+import TP2.TypeException;
 
 public abstract class Variable {
 	public abstract String pp();
-	public abstract RetVariable toIR(SymbolTable ts);
+	public abstract RetVariable toIR(SymbolTable ts) throws TypeException;
 	
 	static public class RetVariable{
         // The LLVM IR:

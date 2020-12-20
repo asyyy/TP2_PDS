@@ -6,37 +6,49 @@ import java.util.function.Function;
 import TP2.Llvm;
 import TP2.SymbolTable;
 import TP2.TypeException;
+import TP2.ASD.Fonction.RetFonction;
 
 public class Program {
-    //List<Proto> lProto; Pour plus tard
+     
+	private int nbIndent = 0;
+	private List<Prototype> lProto;
     private List<Fonction> lFonc;
     
-    public Program(List<Fonction> lFonc) {
+    public Program(List<Prototype> lProto,List<Fonction> lFonc) {
+      this.lProto = lProto;
       this.lFonc = lFonc;
     }
 
     // Pretty-printer
     public String pp() {
     	String res = "";
+    	for(Prototype pro : lProto) {
+        	res = res + pro.pp();
+        }
         for(Fonction fon : lFonc) {
-        	res = res + fon.pp();
+        	res = res + fon.pp(nbIndent++);
         }
         return res;
     }
     
     // IR generation
-    //TODO
+    
     public Llvm.IR toIR() throws TypeException {
-    	// TODO : change when you extend the language
     	
     	SymbolTable ts = new SymbolTable();
-        // computes the IR of the expression
-    	/*
-        Expression.RetExpression retExpr = e.toIR(ts);
-        // add a return instruction
-        Llvm.Instruction ret = new Llvm.Return(retExpr.type.toLlvmType(), retExpr.result);
-        retExpr.ir.appendCode(ret);*/
+        
+        if(lFonc.isEmpty()) {
+        	throw new TypeException("Program sans fonction");
+        }
+        RetFonction ret = null;
+        for(int i = 0;i<lFonc.size();i++) {
+        	if(i == 0) {
+        		ret = lFonc.get(0).toIR(ts);
+        	}else {
+        		ret = lFonc.get(i).toIR(ts);
+        	}
+        }
 
-        return null;
+        return ret.ir;
       }
   }

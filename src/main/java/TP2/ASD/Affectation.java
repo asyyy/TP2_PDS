@@ -18,7 +18,7 @@ public class Affectation extends Instruction {
 	}
 
 	@Override
-	public String pp() {
+	public String pp(int nbIndent) {
 		return name + " := " + e.pp() +"\n";
 	}
 
@@ -31,32 +31,32 @@ public class Affectation extends Instruction {
 		Symbol vara = ts.lookup(this.name);
 		
 		//Regarde si c'est une variable et non une fonction
-		if(vara instanceof VariableSymbol) {
-			var = (VariableSymbol)vara;
-		}else {
-			System.err.println(name +" est le nom d'une fonction et non d'une variable");
-		}
-		
 		if(vara == null) {
-			System.err.println("Variable non déclarer");
+			throw new TypeException("Variable non déclarer");
+		}else {
+			if(vara instanceof FunctionSymbol) {
+				throw new TypeException(name +" est le nom d'une fonction et non d'une variable");
+			}	
+			var = (VariableSymbol)vara;
+			
+			Expression.RetExpression retExp = e.toIR(ts);
+			if(!var.getType().equals(retExp.type)) {
+				throw new TypeException("Type non similaire :"+var.getType() + " et " + var.getType());
+			}
+			nameLlvm = "%" + var.getName();
+			//Créer llvm de instruction vide
+			RetInstruction ret = new RetInstruction(new Llvm.IR(Llvm.empty(), Llvm.empty()),name);
+			
+			//Il faut d'abord commencer par les expressions pour qu'elle soit calculer
+			ret.ir.append(retExp.ir);
+			
+			//Faire le code llvm store du résultat 
+			Llvm.Instruction store = new Llvm.Store(retExp.type.toLlvmType(), retExp.result,var.getType().toLlvmType(), nameLlvm);
+			
+			ret.ir.appendCode(store);
+			return ret;
 		}
 		
-		Expression.RetExpression retExp = e.toIR(ts);
-		if(!var.getType().equals(retExp.type)) {
-			throw new TypeException("Type non similaire :"+var.getType() + " et " + var.getType());
-		}
-		nameLlvm = "%" + nameLlvm;
-		//Créer llvm de instruction vide
-		RetInstruction ret = new RetInstruction(new Llvm.IR(Llvm.empty(), Llvm.empty()),name);
-		
-		//Il faut d'abord commencer par les expressions pour qu'elle soit calculer
-		ret.ir.append(retExp.ir);
-		
-		//Faire le code llvm store du résultat 
-		Llvm.Instruction store = new Llvm.Store(var.getType().toLlvmType(), retExp.result, nameLlvm);
-		
-		ret.ir.appendCode(store);
-		return ret;
 	}
 
 

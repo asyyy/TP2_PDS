@@ -5,7 +5,12 @@ import TP2.SymbolTable;
 
 // Concrete class for Expression: constant (integer) case
   public class IntExpression extends Expression {
-    int value;
+	  
+    private int value;
+    /**
+     * Constructeur de IntExpression
+     * @param value
+     */
     public IntExpression(int value) {
       this.value = value;
     }

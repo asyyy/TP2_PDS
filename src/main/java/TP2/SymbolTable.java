@@ -27,6 +27,10 @@ public class SymbolTable {
       this.type = type;
       this.ident = ident;
     }
+    
+    public String getName() {
+    	return ident;
+    }
 
     @Override public boolean equals(Object obj) {
       if(obj == null) return false;
@@ -44,11 +48,16 @@ public class SymbolTable {
  
 
   public static class FunctionSymbol extends Symbol {
-    Type returnType;
-    List<VariableSymbol> arguments; // arguments is an ordered list of VariableSymbol
+	private Type returnType;
+    private List<VariableSymbol> arguments; // arguments is an ordered list of VariableSymbol
     boolean defined; // false if declared but not defined
-
-    FunctionSymbol(Type returnType, String ident, List<VariableSymbol> arguments, boolean defined) {
+    public Type getType() {
+    	return returnType;
+    }
+    public List<VariableSymbol> getArg(){
+    	return arguments;
+    }
+    public FunctionSymbol(Type returnType, String ident, List<VariableSymbol> arguments, boolean defined) {
       this.returnType = returnType;
       this.ident = ident;
       this.arguments = arguments;

@@ -6,7 +6,7 @@ import TP2.TypeException;
 
 // Warning: this is the instruction from VSL+, not the LLVM instruction!
   public abstract class Instruction{
-    public abstract String pp();
+    public abstract String pp(int nbIndent);
     public abstract RetInstruction toIR(SymbolTable ts) throws TypeException;
     
     static public class RetInstruction {

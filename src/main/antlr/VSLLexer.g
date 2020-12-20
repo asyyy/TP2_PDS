@@ -19,8 +19,10 @@ fragment DIGIT  : '0'..'9' ;
 fragment ASCII  : ~('\n'|'"');
 
 // keywords
-LP    : '(' ; // Left parenthesis
+LP    : '(' ;
 RP    : ')' ;
+LC : '[';
+RC : ']';
 PLUS : '+';
 MOINS : '-' ;
 DIV   : '/' ;
@@ -32,6 +34,17 @@ VIRG : ',';
 FUNC : 'FUNC';
 INT : 'INT';
 VOID :'VOID';
+IF : 'IF';
+FI : 'FI';
+THEN : 'THEN';
+ELSE : 'ELSE';
+WHILE : 'WHILE';
+DO : 'DO';
+DONE : 'DONE';
+PROTO : 'PROTO';
+RETURN : 'RETURN';
+PRINT : 'PRINT';
+READ : 'READ';
 
 
 // TODO : other keywords

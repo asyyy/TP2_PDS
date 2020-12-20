@@ -12,7 +12,7 @@ import TP2.TypeException;
  */
 public abstract class Fonction {
 	
-	public abstract String pp();
+	public abstract String pp(int nbIndent);
 	
 	public abstract RetFonction toIR(SymbolTable ts) throws TypeException;
 	
